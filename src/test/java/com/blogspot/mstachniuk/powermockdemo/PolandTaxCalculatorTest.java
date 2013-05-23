@@ -3,10 +3,6 @@ package com.blogspot.mstachniuk.powermockdemo;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 
 import java.lang.reflect.Method;
 
@@ -25,10 +21,17 @@ public class PolandTaxCalculatorTest {
 		// given
 		PolandTaxCalculator calculator = new PolandTaxCalculator();
 		Product product = new Product("beef", 30);
-		TaxFromFileReader taxReader = mock(TaxFromFileReader.class);
+		TaxFromFileReader taxReader = PowerMockito.spy(new TaxFromFileReader("fake"));
 		Method methodToMock = PowerMockito.method(TaxFromFileReader.class, "readTaxFromFile",
 				Product.class, String.class);
-		PowerMockito.doReturn(0.5).when(taxReader, methodToMock);
+		PowerMockito.when(taxReader, methodToMock)//
+				.withArguments(any(Product.class), anyString())//
+				.thenReturn(new Double(0.5));
+		// bug
+		// PowerMockito.doReturn(new Double(0.5)).when(taxReader, methodToMock)
+		// .withArguments(any(Product.class), anyString());
+
+		calculator.setTaxFromFileReader(taxReader);
 
 		// when
 		double calculatedTax = calculator.calculateTax(product);

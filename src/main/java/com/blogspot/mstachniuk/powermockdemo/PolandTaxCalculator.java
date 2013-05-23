@@ -2,7 +2,7 @@ package com.blogspot.mstachniuk.powermockdemo;
 
 public class PolandTaxCalculator implements TaxCalculator {
 
-	private final TaxFromFileReader taxFromFileReader = new TaxFromFileReader("polandTax.txt");
+	private TaxFromFileReader taxFromFileReader;
 
 	@Override
 	public double calculateTax(Product product) {
@@ -13,7 +13,12 @@ public class PolandTaxCalculator implements TaxCalculator {
 	// TODO: How to mockt this Method?
 	private double readTaxRateFromFile(Product product) {
 
-		taxFromFileReader.readTax(product);
-		return 0.23;
+		return taxFromFileReader.readTax(product);
 	}
+
+	// For Tests
+	public void setTaxFromFileReader(TaxFromFileReader taxFromFileReader) {
+		this.taxFromFileReader = taxFromFileReader;
+	}
+
 }
