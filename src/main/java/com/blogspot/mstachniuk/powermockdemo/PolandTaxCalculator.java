@@ -10,7 +10,7 @@ public class PolandTaxCalculator implements TaxCalculator {
 		return taxRate * product.getNetPrice();
 	}
 
-	// TODO: How to mockt this Method?
+	// TODO: How to mock this Method?
 	private double readTaxRateFromFile(Product product) {
 
 		return taxFromFileReader.readTax(product);
