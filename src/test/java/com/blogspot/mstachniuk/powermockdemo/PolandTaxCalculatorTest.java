@@ -1,10 +1,8 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Method;
 
@@ -13,19 +11,19 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ TaxFromFileReader.class, PolandTaxCalculator.class })
+@PrepareForTest({ PolandTaxFromFileReader.class, PolandTaxCalculator.class })
 public class PolandTaxCalculatorTest {
+
+	private final Product product = new Product("beef", 30);
 
 	@Test
 	public void shoudMockPrivateMethodInDOC() throws Exception {
 		// given
 		PolandTaxCalculator calculator = new PolandTaxCalculator();
-		Product product = new Product("beef", 30);
-		TaxFromFileReader taxReader = PowerMockito.spy(new TaxFromFileReader("fake"));
-		Method methodToMock = PowerMockito.method(TaxFromFileReader.class, "readTaxFromFile",
+		PolandTaxFromFileReader taxReader = PowerMockito.spy(new PolandTaxFromFileReader("fake"));
+		Method methodToMock = PowerMockito.method(PolandTaxFromFileReader.class, "readTaxFromFile",
 				Product.class, String.class);
 		PowerMockito.when(taxReader, methodToMock)//
 				.withArguments(any(Product.class), anyString())//
@@ -47,7 +45,6 @@ public class PolandTaxCalculatorTest {
 	public void shoudMockPrivateMethodInSUT() throws Exception {
 		// given
 		PolandTaxCalculator calculator = PowerMockito.spy(new PolandTaxCalculator());
-		Product product = new Product("beef", 30);
 		Method methodToMock = PowerMockito.method(PolandTaxCalculator.class, "readTaxRateFromFile",
 				Product.class);
 

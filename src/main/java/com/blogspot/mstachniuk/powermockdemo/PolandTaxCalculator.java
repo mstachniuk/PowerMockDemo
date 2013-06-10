@@ -1,8 +1,10 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
+import java.io.IOException;
+
 public class PolandTaxCalculator implements TaxCalculator {
 
-	private TaxFromFileReader taxFromFileReader;
+	private PolandTaxFromFileReader taxFromFileReader;
 
 	@Override
 	public double calculateTax(Product product) {
@@ -12,12 +14,15 @@ public class PolandTaxCalculator implements TaxCalculator {
 
 	// TODO: How to mock this Method?
 	private double readTaxRateFromFile(Product product) {
-
-		return taxFromFileReader.readTax(product);
+		try {
+			return taxFromFileReader.readTax(product);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	// For Tests
-	public void setTaxFromFileReader(TaxFromFileReader taxFromFileReader) {
+	public void setTaxFromFileReader(PolandTaxFromFileReader taxFromFileReader) {
 		this.taxFromFileReader = taxFromFileReader;
 	}
 
