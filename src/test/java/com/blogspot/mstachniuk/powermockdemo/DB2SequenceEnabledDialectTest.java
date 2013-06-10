@@ -1,11 +1,13 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Test;
@@ -73,6 +75,31 @@ public class DB2SequenceEnabledDialectTest {
 		final InputStream is = mock(InputStream.class); // empty stream
 		PowerMockito.when(DB2SequenceEnabledDialect.class.getResourceAsStream(anyString()))
 				.thenReturn(is);
+
+		// init Logger
+		Whitebox.setInternalState(DB2SequenceEnabledDialect.class, mock(Logger.class));
+
+		try {
+			// when
+			Whitebox.invokeMethod(DB2SequenceEnabledDialect.class, "init", new Object[] {});
+			fail("It should throw RuntimeException");
+		} catch (final RuntimeException e) {
+			// then
+			assertEquals("I can't find property: db2.schema in file: /db2.properties",
+					e.getMessage());
+		}
+	}
+
+	@Test
+	public void shoudThrowIOExceptionWhenInputStreamCloseMockVoidMethod() throws Exception {
+		// given
+		// mock static Method.
+		PowerMockito.mockStatic(DB2SequenceEnabledDialect.class, Mockito.CALLS_REAL_METHODS);
+		final InputStream is = mock(InputStream.class); // empty stream
+		PowerMockito.when(DB2SequenceEnabledDialect.class.getResourceAsStream(anyString()))
+				.thenReturn(is);
+		// Mock void Method, throw Exception
+		PowerMockito.doThrow(new IOException()).when(is).close();
 
 		// init Logger
 		Whitebox.setInternalState(DB2SequenceEnabledDialect.class, mock(Logger.class));

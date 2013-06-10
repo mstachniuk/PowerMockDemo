@@ -31,7 +31,8 @@ public class GermanTaxFromFileReader {
 		} finally {
 			reader.close();
 		}
-		return 0;
+		throw new RuntimeException("Can't read Tax from file: " + filename + " for "
+				+ product.getName());
 	}
 
 }
