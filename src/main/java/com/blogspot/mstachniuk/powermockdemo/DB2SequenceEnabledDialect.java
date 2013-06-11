@@ -23,7 +23,7 @@ public class DB2SequenceEnabledDialect extends DB2Dialect {
 		init();
 	}
 
-	public static void init() {
+	private static void init() {
 		loadProperties();
 		checkProperties();
 	}
