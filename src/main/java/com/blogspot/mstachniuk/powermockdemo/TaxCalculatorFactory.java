@@ -1,5 +1,7 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
+import com.blogspot.mstachniuk.powermockdemo.poland.*;
+
 public class TaxCalculatorFactory {
 
     public TaxCalculator getInstance(Country country) {

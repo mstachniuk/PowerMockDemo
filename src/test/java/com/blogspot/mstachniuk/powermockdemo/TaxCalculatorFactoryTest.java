@@ -1,5 +1,6 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
+import com.blogspot.mstachniuk.powermockdemo.poland.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.powermock.api.mockito.*;
@@ -7,8 +8,9 @@ import org.powermock.core.classloader.annotations.*;
 import org.powermock.modules.junit4.*;
 import org.powermock.reflect.*;
 
-import static org.fest.assertions.api.Assertions.*;
-import static org.junit.Assert.assertTrue;
+import static org.fest.assertions.api.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.fail;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
@@ -25,19 +27,19 @@ public class TaxCalculatorFactoryTest {
         // then
         assertThat(taxCalculator).isInstanceOf(GermanTaxCalculator.class);
     }
-    
+
     @Test
     public void shouldReturnTaxFactoryForPoland() {
-    	// given
-    	TaxCalculatorFactory factory = new TaxCalculatorFactory();
-    	
-    	// when
-    	TaxCalculator taxCalculator = factory.getInstance(Country.POLAND);
-    	
-    	// then
-    	assertThat(taxCalculator).isInstanceOf(PolandTaxCalculator.class);
+        // given
+        TaxCalculatorFactory factory = new TaxCalculatorFactory();
+
+        // when
+        TaxCalculator taxCalculator = factory.getInstance(Country.POLAND);
+
+        // then
+        assertThat(taxCalculator).isInstanceOf(PolandTaxCalculator.class);
     }
-    
+
     @Test
     @PrepareForTest(Country.class)
     public void shouldThrowExceptionWhenUseNonExistCountry() throws Exception {
@@ -49,7 +51,7 @@ public class TaxCalculatorFactoryTest {
         Whitebox.setInternalState(countryMock, "ordinal", 2);
         // mock static Method
         when(Country.values()).thenReturn(
-                new Country[] { Country.POLAND, Country.GERMAN, countryMock});
+                new Country[]{Country.POLAND, Country.GERMAN, countryMock});
 
         // when
         try {
@@ -60,7 +62,6 @@ public class TaxCalculatorFactoryTest {
             assertTrue(true);
         }
     }
-    
 
 
 }

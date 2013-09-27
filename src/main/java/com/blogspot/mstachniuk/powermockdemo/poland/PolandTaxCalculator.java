@@ -1,11 +1,12 @@
-package com.blogspot.mstachniuk.powermockdemo;
+package com.blogspot.mstachniuk.powermockdemo.poland;
+
+import com.blogspot.mstachniuk.powermockdemo.*;
 
 import java.io.*;
 
-public class GermanTaxCalculator implements TaxCalculator {
+public class PolandTaxCalculator implements TaxCalculator {
 
-    // private final field. How to change this field from test?
-    private final GermanTaxFromFileReader taxFromFileReader = new GermanTaxFromFileReader("file.not.exist");
+    private PolandTaxFromFileReader taxFromFileReader;
 
     @Override
     public double calculateTax(Product product) {
@@ -13,13 +14,17 @@ public class GermanTaxCalculator implements TaxCalculator {
         return taxRate * product.getNetPrice();
     }
 
-    // TODO: How to mock this Method?
     private double readTaxRateFromFile(Product product) {
         try {
             return taxFromFileReader.readTax(product);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // For Tests
+    public void setTaxFromFileReader(PolandTaxFromFileReader taxFromFileReader) {
+        this.taxFromFileReader = taxFromFileReader;
     }
 
 }

@@ -1,5 +1,6 @@
-package com.blogspot.mstachniuk.powermockdemo;
+package com.blogspot.mstachniuk.powermockdemo.poland;
 
+import com.blogspot.mstachniuk.powermockdemo.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.powermock.api.mockito.*;
@@ -51,7 +52,7 @@ public class PolandTaxCalculatorTest {
                 .when(calculator, methodToMock)//
                 .withArguments(any(Product.class));
 
-        // don't work, invoke real method and throw NPE.
+        // bug. don't work, invoke real method and throw NPE.
         // PowerMockito.when(calculator, methodToMock) //
         // .withArguments(any(Product.class))//
         // .thenReturn(new Double(0.75));

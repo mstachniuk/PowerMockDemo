@@ -87,7 +87,7 @@ public class GermanTaxFromFileReaderTest {
     }
 
     @Test
-    public void shoudThrowEception() throws Exception {
+    public void shouldThrowException() throws Exception {
         // given
         GermanTaxFromFileReader reader = new GermanTaxFromFileReader("fake");
 

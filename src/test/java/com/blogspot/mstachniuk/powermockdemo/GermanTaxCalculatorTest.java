@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({PolandTaxFromFileReader.class, PolandTaxCalculator.class})
+@PrepareForTest({GermanTaxFromFileReader.class})
 public class GermanTaxCalculatorTest {
 
     private final Product product = new Product("beef", 30);
@@ -21,9 +21,9 @@ public class GermanTaxCalculatorTest {
         // given
         GermanTaxCalculator calculator = new GermanTaxCalculator();
 
-        PolandTaxFromFileReader reader = PowerMockito.mock(PolandTaxFromFileReader.class);
+        GermanTaxFromFileReader reader = PowerMockito.mock(GermanTaxFromFileReader.class);
         when(reader.readTax(product)).thenReturn(0.20);
-        Whitebox.setInternalState(calculator, PolandTaxFromFileReader.class, reader);
+        Whitebox.setInternalState(calculator, GermanTaxFromFileReader.class, reader);
 
         // when
         double calculatedTax = calculator.calculateTax(product);
