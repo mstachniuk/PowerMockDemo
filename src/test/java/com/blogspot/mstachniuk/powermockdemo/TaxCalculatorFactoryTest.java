@@ -46,7 +46,7 @@ public class TaxCalculatorFactoryTest {
     public void shouldThrowExceptionWhenUseNonExistCountry() throws Exception {
         // given
         TaxCalculatorFactory factory = new TaxCalculatorFactory();
-        PowerMockito.mockStatic(Country.class); // Now all static Method return default Answer and we can change behaviour of static Methods
+        PowerMockito.mockStatic(Country.class);
         Country countryMock = mock(Country.class);
         Whitebox.setInternalState(countryMock, "name", "countryMock");
         Whitebox.setInternalState(countryMock, "ordinal", 2);

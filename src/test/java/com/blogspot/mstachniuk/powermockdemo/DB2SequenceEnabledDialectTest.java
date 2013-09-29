@@ -18,7 +18,8 @@ import static org.mockito.Mockito.*;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(DB2SequenceEnabledDialect.class)
 // ignore static block in DB2SequenceEnabledDialect
-@SuppressStaticInitializationFor("com.blogspot.mstachniuk.powermockdemo.DB2SequenceEnabledDialect")
+@SuppressStaticInitializationFor(
+        "com.blogspot.mstachniuk.powermockdemo.DB2SequenceEnabledDialect")
 public class DB2SequenceEnabledDialectTest {
 
     @Test
@@ -29,11 +30,11 @@ public class DB2SequenceEnabledDialectTest {
         // init Logger
         Whitebox.setInternalState(DB2SequenceEnabledDialect.class, mock(Logger.class));
 
-        final DB2SequenceEnabledDialect dialekt = new DB2SequenceEnabledDialect();
+        final DB2SequenceEnabledDialect dialect = new DB2SequenceEnabledDialect();
         Whitebox.setInternalState(DB2SequenceEnabledDialect.class, "schemaName", schemaName);
 
         // when
-        final String nextValue = dialekt.getSequenceNextValString(sequenceName);
+        final String nextValue = dialect.getSequenceNextValString(sequenceName);
 
         // then
         assertEquals("SELECT NEXTVAL FOR " + schemaName + "." + sequenceName
@@ -43,10 +44,10 @@ public class DB2SequenceEnabledDialectTest {
     @Test
     public void shouldSupportSequences() {
         // given
-        final DB2SequenceEnabledDialect dialekt = new DB2SequenceEnabledDialect();
+        final DB2SequenceEnabledDialect dialect = new DB2SequenceEnabledDialect();
 
         // when
-        final boolean supportsSequences = dialekt.supportsSequences();
+        final boolean supportsSequences = dialect.supportsSequences();
 
         // then
         assertTrue("This Dialect should support sequences", supportsSequences);

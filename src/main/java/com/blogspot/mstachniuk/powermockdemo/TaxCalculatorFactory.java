@@ -12,7 +12,8 @@ public class TaxCalculatorFactory {
             case POLAND:
                 return new PolandTaxCalculator();
             default:
-                throw new UnsupportedOperationException("No supported Tax Calculator for " + country.name());
+                throw new UnsupportedOperationException(
+                        "No supported Tax Calculator for " + country.name());
         }
     }
 }
