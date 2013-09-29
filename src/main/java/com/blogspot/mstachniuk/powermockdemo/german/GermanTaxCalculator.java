@@ -1,4 +1,6 @@
-package com.blogspot.mstachniuk.powermockdemo;
+package com.blogspot.mstachniuk.powermockdemo.german;
+
+import com.blogspot.mstachniuk.powermockdemo.*;
 
 import java.io.*;
 

@@ -1,5 +1,6 @@
-package com.blogspot.mstachniuk.powermockdemo;
+package com.blogspot.mstachniuk.powermockdemo.german;
 
+import com.blogspot.mstachniuk.powermockdemo.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.*;
@@ -18,11 +19,7 @@ import static org.mockito.Mockito.*;
 @PrepareForTest({GermanTaxFromFileReader.class, BufferedReader.class})
 public class GermanTaxFromFileReaderTest {
 
-    private static final String BEEF_TEXT = "beef";
-    private static final String SEPARATOR = ";";
-    private static final double EXPECTED_TAX = 20;
-
-    private final Product product = new Product(BEEF_TEXT, 30);
+    private final Product product = new Product("beef", 30);
 
     @Test
     public void shouldMockBufferedReaderConstructor() throws Exception {
@@ -30,20 +27,20 @@ public class GermanTaxFromFileReaderTest {
         GermanTaxFromFileReader reader = new GermanTaxFromFileReader("fake");
 
         BufferedReader readerMock = PowerMockito.mock(BufferedReader.class);
-        when(readerMock.readLine()).thenReturn(BEEF_TEXT + SEPARATOR + EXPECTED_TAX);
+        when(readerMock.readLine()).thenReturn("beef;20.0");
 
         // when called new BufferedReader(Reader) return mock
-        Constructor<BufferedReader> constructor = Whitebox.getConstructor(BufferedReader.class,
-                Reader.class);
+        Constructor<BufferedReader> constructor = Whitebox.getConstructor(
+                BufferedReader.class, Reader.class);
         PowerMockito.whenNew(constructor)//
                 .withArguments(Mockito.any(Reader.class))//
                 .thenReturn(readerMock);
 
         // when called new FileReader(String) return null
-        Constructor<FileReader> constructorFileReader = Whitebox.getConstructor(FileReader.class,
-                String.class);
+        Constructor<FileReader> constructorFileReader = Whitebox.getConstructor(
+                FileReader.class, String.class);
         PowerMockito.whenNew(constructorFileReader)//
-                .withArguments(Mockito.any(String.class))//
+                .withArguments(Matchers.any(String.class))//
                 .thenReturn(null);
 
         // when
@@ -62,7 +59,7 @@ public class GermanTaxFromFileReaderTest {
         // return more lines
         when(readerMock.readLine()).thenReturn("milk;50",//
                 "water;10",//
-                BEEF_TEXT + SEPARATOR + EXPECTED_TAX,//
+                "beef" + ";" + (double) 20,//
                 "pizza;101");
 
         // when called new BufferedReader(Reader) return mock

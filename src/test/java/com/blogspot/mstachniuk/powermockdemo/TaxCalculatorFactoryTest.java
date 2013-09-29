@@ -1,5 +1,6 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
+import com.blogspot.mstachniuk.powermockdemo.german.*;
 import com.blogspot.mstachniuk.powermockdemo.poland.*;
 import org.junit.*;
 import org.junit.runner.*;
