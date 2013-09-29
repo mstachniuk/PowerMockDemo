@@ -21,12 +21,12 @@ public class RussiaTaxCalculatorTest {
     private final Product product = new Product("beef", 30);
 
     @Test
-    public void shouldMockPrivateStaticMethod() throws Exception {
+    public void shouldMockPrivateStaticFinalMethod() throws Exception {
         // given
         PowerMockito.mockStatic(RussiaTaxCalculator.class,
                 withSettings().defaultAnswer(Mockito.CALLS_REAL_METHODS));
         RussiaTaxCalculator calculator = new RussiaTaxCalculator();
-        // static final method
+        // private static final method
         Method method = Whitebox.getMethod(RussiaTaxCalculator.class,
                 "updateActualTaxRate", Product.class);
         PowerMockito.when(RussiaTaxCalculator.class, method)//
