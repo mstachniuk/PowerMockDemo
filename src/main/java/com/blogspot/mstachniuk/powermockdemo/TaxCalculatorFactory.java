@@ -7,7 +7,7 @@ public class TaxCalculatorFactory {
 
     public TaxCalculator getInstance(Country country) {
         switch (country) {
-            case GERMAN:
+            case GERMANY:
                 return new GermanTaxCalculator();
             case POLAND:
                 return new PolandTaxCalculator();

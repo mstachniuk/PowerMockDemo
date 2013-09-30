@@ -23,7 +23,7 @@ public class TaxCalculatorFactoryTest {
         TaxCalculatorFactory factory = new TaxCalculatorFactory();
 
         // when
-        TaxCalculator taxCalculator = factory.getInstance(Country.GERMAN);
+        TaxCalculator taxCalculator = factory.getInstance(Country.GERMANY);
 
         // then
         assertThat(taxCalculator).isInstanceOf(GermanTaxCalculator.class);
@@ -52,7 +52,7 @@ public class TaxCalculatorFactoryTest {
         Whitebox.setInternalState(countryMock, "ordinal", 2);
         // mock static Method
         when(Country.values()).thenReturn(
-                new Country[]{Country.POLAND, Country.GERMAN, countryMock});
+                new Country[]{Country.POLAND, Country.GERMANY, countryMock});
 
         // when
         try {
