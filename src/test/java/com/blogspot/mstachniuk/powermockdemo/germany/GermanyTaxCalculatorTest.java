@@ -1,4 +1,4 @@
-package com.blogspot.mstachniuk.powermockdemo.german;
+package com.blogspot.mstachniuk.powermockdemo.germany;
 
 import com.blogspot.mstachniuk.powermockdemo.*;
 import org.junit.*;
@@ -12,19 +12,19 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({GermanTaxFromFileReader.class})
-public class GermanTaxCalculatorTest {
+@PrepareForTest({GermanyTaxFromFileReader.class})
+public class GermanyTaxCalculatorTest {
 
     private final Product product = new Product("beef", 30);
 
     @Test
     public void shouldMockPrivateFinalField() throws Exception {
         // given
-        GermanTaxCalculator calculator = new GermanTaxCalculator();
+        GermanyTaxCalculator calculator = new GermanyTaxCalculator();
 
-        GermanTaxFromFileReader reader = PowerMockito.mock(GermanTaxFromFileReader.class);
+        GermanyTaxFromFileReader reader = PowerMockito.mock(GermanyTaxFromFileReader.class);
         when(reader.readTax(product)).thenReturn(0.20);
-        Whitebox.setInternalState(calculator, GermanTaxFromFileReader.class, reader);
+        Whitebox.setInternalState(calculator, GermanyTaxFromFileReader.class, reader);
 
         // when
         double calculatedTax = calculator.calculateTax(product);

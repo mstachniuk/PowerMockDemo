@@ -1,6 +1,6 @@
 package com.blogspot.mstachniuk.powermockdemo;
 
-import com.blogspot.mstachniuk.powermockdemo.german.*;
+import com.blogspot.mstachniuk.powermockdemo.germany.*;
 import com.blogspot.mstachniuk.powermockdemo.poland.*;
 import org.junit.*;
 import org.junit.runner.*;
@@ -26,7 +26,7 @@ public class TaxCalculatorFactoryTest {
         TaxCalculator taxCalculator = factory.getInstance(Country.GERMANY);
 
         // then
-        assertThat(taxCalculator).isInstanceOf(GermanTaxCalculator.class);
+        assertThat(taxCalculator).isInstanceOf(GermanyTaxCalculator.class);
     }
 
     @Test
