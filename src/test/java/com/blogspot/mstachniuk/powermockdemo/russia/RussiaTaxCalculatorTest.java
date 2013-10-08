@@ -24,7 +24,7 @@ public class RussiaTaxCalculatorTest {
     public void shouldMockPrivateStaticFinalMethod() throws Exception {
         // given
         PowerMockito.mockStatic(RussiaTaxCalculator.class,
-                withSettings().defaultAnswer(Mockito.CALLS_REAL_METHODS));
+                Mockito.CALLS_REAL_METHODS);
         RussiaTaxCalculator calculator = new RussiaTaxCalculator();
         // private static final method
         Method method = Whitebox.getMethod(RussiaTaxCalculator.class,

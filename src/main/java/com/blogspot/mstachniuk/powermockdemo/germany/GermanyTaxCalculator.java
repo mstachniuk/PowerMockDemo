@@ -1,13 +1,13 @@
-package com.blogspot.mstachniuk.powermockdemo.german;
+package com.blogspot.mstachniuk.powermockdemo.germany;
 
 import com.blogspot.mstachniuk.powermockdemo.*;
 
 import java.io.*;
 
-public class GermanTaxCalculator implements TaxCalculator {
+public class GermanyTaxCalculator implements TaxCalculator {
 
-    private final GermanTaxFromFileReader taxFromFileReader
-            = new GermanTaxFromFileReader("file.txt");
+    private final GermanyTaxFromFileReader taxFromFileReader
+            = new GermanyTaxFromFileReader("file.txt");
 
     @Override
     public double calculateTax(Product product) {

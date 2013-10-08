@@ -1,14 +1,14 @@
-package com.blogspot.mstachniuk.powermockdemo.german;
+package com.blogspot.mstachniuk.powermockdemo.germany;
 
 import com.blogspot.mstachniuk.powermockdemo.*;
 
 import java.io.*;
 
-public class GermanTaxFromFileReader {
+public class GermanyTaxFromFileReader {
 
     private final String filename;
 
-    public GermanTaxFromFileReader(String filename) {
+    public GermanyTaxFromFileReader(String filename) {
         this.filename = filename;
     }
 
