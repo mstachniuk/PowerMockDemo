@@ -1,4 +1,4 @@
-package com.blogspot.mstachniuk.powermockdemo.german;
+package com.blogspot.mstachniuk.powermockdemo.germany;
 
 import com.blogspot.mstachniuk.powermockdemo.*;
 import org.junit.*;
@@ -16,15 +16,15 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(GermanTaxFromFileReader.class)
-public class GermanTaxFromFileReaderTest {
+@PrepareForTest(GermanyTaxFromFileReader.class)
+public class GermanyTaxFromFileReaderTest {
 
     private final Product product = new Product("beef", 30);
 
     @Test
     public void shouldMockBufferedReaderConstructor() throws Exception {
         // given
-        GermanTaxFromFileReader reader = new GermanTaxFromFileReader("fake");
+        GermanyTaxFromFileReader reader = new GermanyTaxFromFileReader("fake");
 
         BufferedReader readerMock = PowerMockito.mock(BufferedReader.class);
         when(readerMock.readLine()).thenReturn("beef;20.0");
@@ -53,7 +53,7 @@ public class GermanTaxFromFileReaderTest {
     @Test
     public void shouldMockBufferedReaderConstructorAndReadMoreLines() throws Exception {
         // given
-        GermanTaxFromFileReader reader = new GermanTaxFromFileReader("fake");
+        GermanyTaxFromFileReader reader = new GermanyTaxFromFileReader("fake");
 
         BufferedReader readerMock = PowerMockito.mock(BufferedReader.class);
         // return more lines
@@ -86,7 +86,7 @@ public class GermanTaxFromFileReaderTest {
     @Test
     public void shouldThrowException() throws Exception {
         // given
-        GermanTaxFromFileReader reader = new GermanTaxFromFileReader("fake");
+        GermanyTaxFromFileReader reader = new GermanyTaxFromFileReader("fake");
 
         BufferedReader readerMock = PowerMockito.mock(BufferedReader.class);
         // return more lines

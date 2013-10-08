@@ -12,7 +12,6 @@ import org.powermock.reflect.*;
 import java.lang.reflect.*;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({RussiaTaxCalculator.class})
