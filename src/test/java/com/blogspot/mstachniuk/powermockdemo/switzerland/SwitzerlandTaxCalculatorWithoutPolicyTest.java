@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(SwitzerlandTaxSource.class)
-@SuppressStaticInitializationFor(
-        "com.blogspot.mstachniuk.powermockdemo.switzerland.SwitzerlandTaxSource")
 public class SwitzerlandTaxCalculatorWithoutPolicyTest {
 
     @Test

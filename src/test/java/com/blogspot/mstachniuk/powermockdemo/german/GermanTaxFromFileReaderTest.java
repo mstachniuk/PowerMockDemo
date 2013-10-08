@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({GermanTaxFromFileReader.class, BufferedReader.class})
+@PrepareForTest(GermanTaxFromFileReader.class)
 public class GermanTaxFromFileReaderTest {
 
     private final Product product = new Product("beef", 30);
